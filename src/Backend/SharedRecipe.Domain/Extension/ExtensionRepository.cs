@@ -22,5 +22,6 @@ namespace SharedRecipe.Domain.Extension
         {
             return $"{configuration.GetConnectionStrings()}Database={configuration.GetNameDatabase()}";
         }
+
     }
 }
