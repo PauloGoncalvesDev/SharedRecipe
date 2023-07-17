@@ -117,13 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EMPTY_FIELD" xml:space="preserve">
-    <value>O campo '{0}' é obrigatório.</value>
+  <data name="EMPTY_EMAIL" xml:space="preserve">
+    <value>O campo 'Email' é obrigatório.</value>
+  </data>
+  <data name="EMPTY_NAME" xml:space="preserve">
+    <value>O campo 'Name' é obrigatório.</value>
+  </data>
+  <data name="EMPTY_PASSWORD" xml:space="preserve">
+    <value>O campo 'Password' é obrigatório.</value>
+  </data>
+  <data name="EMPTY_PHONE" xml:space="preserve">
+    <value>O campo 'Phone' é obrigatório.</value>
   </data>
   <data name="FORMAT_PHONE" xml:space="preserve">
-    <value>O campo Telefone deve seguir o formato XX XXXXX-XXXX.</value>
+    <value>O campo 'Phone' deve seguir o formato XX XXXXX-XXXX.</value>
   </data>
-  <data name="INVALID_FIELD" xml:space="preserve">
-    <value>O campo '{0}' é inválido.</value>
+  <data name="INVALID_EMAIL" xml:space="preserve">
+    <value>O campo 'Email' é inválido.</value>
+  </data>
+  <data name="LENGTH_PASSWORD" xml:space="preserve">
+    <value>O campo 'Password' deve ter no mínimo 6 caracteres.</value>
+  </data>
+  <data name="UNKNOW_ERROR" xml:space="preserve">
+    <value>Erro desconhecido.</value>
   </data>
 </root>

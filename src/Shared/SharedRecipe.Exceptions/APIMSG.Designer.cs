@@ -61,16 +61,43 @@ namespace SharedRecipe.Exceptions {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field &apos;{0}&apos; is required..
+        ///   Looks up a localized string similar to The field &apos;Email&apos; is required..
         /// </summary>
-        public static string EMPTY_FIELD {
+        public static string EMPTY_EMAIL {
             get {
-                return ResourceManager.GetString("EMPTY_FIELD", resourceCulture);
+                return ResourceManager.GetString("EMPTY_EMAIL", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Phone field must be formatted as XX XXXXX-XXXX..
+        ///   Looks up a localized string similar to The field &apos;Name&apos; is required..
+        /// </summary>
+        public static string EMPTY_NAME {
+            get {
+                return ResourceManager.GetString("EMPTY_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The field &apos;Password&apos; is required..
+        /// </summary>
+        public static string EMPTY_PASSWORD {
+            get {
+                return ResourceManager.GetString("EMPTY_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The field &apos;Phone&apos; is required..
+        /// </summary>
+        public static string EMPTY_PHONE {
+            get {
+                return ResourceManager.GetString("EMPTY_PHONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The field &apos;Phone&apos; must be formatted as XX XXXXX-XXXX..
         /// </summary>
         public static string FORMAT_PHONE {
             get {
@@ -79,11 +106,29 @@ namespace SharedRecipe.Exceptions {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field &apos;{0}&apos; is invalid..
+        ///   Looks up a localized string similar to The field &apos;Email&apos; is invalid..
         /// </summary>
-        public static string INVALID_FIELD {
+        public static string INVALID_EMAIL {
             get {
-                return ResourceManager.GetString("INVALID_FIELD", resourceCulture);
+                return ResourceManager.GetString("INVALID_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The field &apos;Password&apos; must be at least 6 characters long..
+        /// </summary>
+        public static string LENGTH_PASSWORD {
+            get {
+                return ResourceManager.GetString("LENGTH_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknow error..
+        /// </summary>
+        public static string UNKNOW_ERROR {
+            get {
+                return ResourceManager.GetString("UNKNOW_ERROR", resourceCulture);
             }
         }
     }

@@ -117,13 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EMPTY_FIELD" xml:space="preserve">
-    <value>The field '{0}' is required.</value>
+  <data name="EMPTY_EMAIL" xml:space="preserve">
+    <value>The field 'Email' is required.</value>
+  </data>
+  <data name="EMPTY_NAME" xml:space="preserve">
+    <value>The field 'Name' is required.</value>
+  </data>
+  <data name="EMPTY_PASSWORD" xml:space="preserve">
+    <value>The field 'Password' is required.</value>
+  </data>
+  <data name="EMPTY_PHONE" xml:space="preserve">
+    <value>The field 'Phone' is required.</value>
   </data>
   <data name="FORMAT_PHONE" xml:space="preserve">
-    <value>The Phone field must be formatted as XX XXXXX-XXXX.</value>
+    <value>The field 'Phone' must be formatted as XX XXXXX-XXXX.</value>
   </data>
-  <data name="INVALID_FIELD" xml:space="preserve">
-    <value>The field '{0}' is invalid.</value>
+  <data name="INVALID_EMAIL" xml:space="preserve">
+    <value>The field 'Email' is invalid.</value>
+  </data>
+  <data name="LENGTH_PASSWORD" xml:space="preserve">
+    <value>The field 'Password' must be at least 6 characters long.</value>
+  </data>
+  <data name="UNKNOW_ERROR" xml:space="preserve">
+    <value>Unknow error.</value>
   </data>
 </root>

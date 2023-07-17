@@ -1,3 +1,4 @@
+using SharedRecipe.Api.Filters;
 using SharedRecipe.Domain.Extension;
 using SharedRecipe.Infrastructure;
 using SharedRecipe.Infrastructure.Migrations;
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRepository(builder.Configuration);
+builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilters)));
 
 var app = builder.Build();
 

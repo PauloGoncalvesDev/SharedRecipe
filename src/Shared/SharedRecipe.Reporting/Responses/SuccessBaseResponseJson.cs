@@ -1,6 +1,6 @@
 ﻿namespace SharedRecipe.Reporting.Responses
 {
-    public class BaseResponseJson
+    public class SuccessBaseResponseJson
     {
         public string Message { get; set; }
 
