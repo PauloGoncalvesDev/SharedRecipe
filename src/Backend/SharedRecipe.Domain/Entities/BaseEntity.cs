@@ -4,7 +4,7 @@
     {
         public long Id { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.UtcNow;
 
         public DateTime? UpdateDate { get; set; }
     }

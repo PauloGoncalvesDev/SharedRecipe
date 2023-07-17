@@ -13,7 +13,7 @@ namespace SharedRecipe.Application.Validators.User
 
             ValidateEmail();
 
-            ValidateEmail();
+            ValidatePhone();
 
             ValidatePassword();
         }
@@ -39,7 +39,7 @@ namespace SharedRecipe.Application.Validators.User
             {
                 RuleFor(r => r.Phone).Custom((phone, context) =>
                 {
-                    string regexPhone = "[0-9]{2} [1-9]{1}[0-9]{4}-[0-9]{4}";
+                    string regexPhone = "[0-9]{2} [1-9]{1} [0-9]{4}-[0-9]{4}";
                     bool isMatch = Regex.IsMatch(phone, regexPhone);
 
                     if (!isMatch)

@@ -8,10 +8,15 @@ namespace SharedRecipe.Api.Controllers
     public class WeatherForecastController : ControllerBase
     {
         [HttpGet(Name = "GetWeatherForecast")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromServices] IRegisterUser registerUser)
         {
-            var usecases = new RegisterUser();
-            await usecases.Execute(new Reporting.Requests.UserRequestJson { });
+            await registerUser.Execute(new Reporting.Requests.UserRequestJson
+            {
+                Email = "gui@gmail.com",
+                Name = "Paulin Guilherme",
+                Password = "123456788",
+                Phone = "88 9 9639-5192"
+            });
 
             return Ok();
         }

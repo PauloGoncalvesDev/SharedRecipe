@@ -1,4 +1,6 @@
-﻿namespace SharedRecipe.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SharedRecipe.Domain.Entities
 {
     public class User : BaseEntity
     {

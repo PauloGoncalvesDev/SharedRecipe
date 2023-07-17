@@ -1,4 +1,6 @@
 using SharedRecipe.Api.Filters;
+using SharedRecipe.Application;
+using SharedRecipe.Application.Services.Automapper;
 using SharedRecipe.Domain.Extension;
 using SharedRecipe.Infrastructure;
 using SharedRecipe.Infrastructure.Migrations;
@@ -12,7 +14,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRepository(builder.Configuration);
+builder.Services.AddApplication();
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilters)));
+
+builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AutomapperConfig());
+}).CreateMapper());
 
 var app = builder.Build();
 
