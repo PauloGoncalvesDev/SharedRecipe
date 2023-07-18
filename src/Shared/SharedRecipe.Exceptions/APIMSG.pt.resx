@@ -129,6 +129,9 @@
   <data name="EMPTY_PHONE" xml:space="preserve">
     <value>O campo 'Phone' é obrigatório.</value>
   </data>
+  <data name="EXISTING_EMAIL" xml:space="preserve">
+    <value>Email informado já está cadastrado.</value>
+  </data>
   <data name="FORMAT_PHONE" xml:space="preserve">
     <value>O campo 'Phone' deve seguir o formato XX XXXXX-XXXX.</value>
   </data>

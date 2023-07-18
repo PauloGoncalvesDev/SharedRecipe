@@ -129,6 +129,9 @@
   <data name="EMPTY_PHONE" xml:space="preserve">
     <value>The field 'Phone' is required.</value>
   </data>
+  <data name="EXISTING_EMAIL" xml:space="preserve">
+    <value>Email provided is already registered.</value>
+  </data>
   <data name="FORMAT_PHONE" xml:space="preserve">
     <value>The field 'Phone' must be formatted as XX XXXXX-XXXX.</value>
   </data>

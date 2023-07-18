@@ -97,6 +97,15 @@ namespace SharedRecipe.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email provided is already registered..
+        /// </summary>
+        public static string EXISTING_EMAIL {
+            get {
+                return ResourceManager.GetString("EXISTING_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The field &apos;Phone&apos; must be formatted as XX XXXXX-XXXX..
         /// </summary>
         public static string FORMAT_PHONE {

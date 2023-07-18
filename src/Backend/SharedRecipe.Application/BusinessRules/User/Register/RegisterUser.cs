@@ -15,6 +15,8 @@ namespace SharedRecipe.Application.BusinessRules.User.Register
     {
         private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
 
+        private readonly IUserReadOnlyRepository _userReadOnlyRepository;
+
         private readonly IMapper _mapper;
 
         private readonly IWorkUnit _workUnit;
@@ -23,18 +25,19 @@ namespace SharedRecipe.Application.BusinessRules.User.Register
 
         private readonly TokenController _tokenController;
 
-        public RegisterUser(IUserWriteOnlyRepository userWriteOnlyRepository, IMapper mapper, IWorkUnit workUnit, PasswordEncryption passwordEncryption, TokenController tokenController)
+        public RegisterUser(IUserWriteOnlyRepository userWriteOnlyRepository, IMapper mapper, IWorkUnit workUnit, PasswordEncryption passwordEncryption, TokenController tokenController, IUserReadOnlyRepository userReadOnlyRepository)
         {
             _userWriteOnlyRepository = userWriteOnlyRepository;
             _mapper = mapper;
             _workUnit = workUnit;
             _passwordEncryption = passwordEncryption;
             _tokenController = tokenController;
+            _userReadOnlyRepository = userReadOnlyRepository;   
         }
 
         public async Task<UserResponseJson> Execute(UserRequestJson userRequestJson)
         {
-            ValidateUser(userRequestJson);
+            await ValidateUser(userRequestJson);
 
             Domain.Entities.User user = _mapper.Map<Domain.Entities.User>(userRequestJson);
             user.Password = _passwordEncryption.Encrypt(userRequestJson.Password);
@@ -53,9 +56,14 @@ namespace SharedRecipe.Application.BusinessRules.User.Register
             };
         }
 
-        private void ValidateUser(UserRequestJson userRequestJson)
+        private async Task ValidateUser(UserRequestJson userRequestJson)
         {
             ValidationResult validationResult = new ValidateUser().Validate(userRequestJson);
+
+            bool existingEmail = await _userReadOnlyRepository.GetExistingEmail(userRequestJson.Email);
+
+            if (existingEmail)
+                validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure(userRequestJson.Email, APIMSG.EXISTING_EMAIL));
 
             if (!validationResult.IsValid)
             {
