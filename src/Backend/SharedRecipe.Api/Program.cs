@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRepository(builder.Configuration);
-builder.Services.AddApplication();
+builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilters)));
 
 builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>

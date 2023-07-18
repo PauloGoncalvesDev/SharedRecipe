@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation.Results;
+using SharedRecipe.Application.Services.Cryptography;
 using SharedRecipe.Application.Validators.User;
 using SharedRecipe.Domain.Repositories;
 using SharedRecipe.Exceptions.ExceptionsBase;
@@ -15,11 +16,14 @@ namespace SharedRecipe.Application.BusinessRules.User.Register
 
         private readonly IWorkUnit _workUnit;
 
-        public RegisterUser(IUserWriteOnlyRepository userWriteOnlyRepository, IMapper mapper, IWorkUnit workUnit)
+        private readonly PasswordEncryption _passwordEncryption;
+
+        public RegisterUser(IUserWriteOnlyRepository userWriteOnlyRepository, IMapper mapper, IWorkUnit workUnit, PasswordEncryption passwordEncryption)
         {
             _userWriteOnlyRepository = userWriteOnlyRepository;
             _mapper = mapper;
             _workUnit = workUnit;
+            _passwordEncryption = passwordEncryption;
         }
 
         public async Task Execute(UserRequestJson userRequestJson)
@@ -27,7 +31,7 @@ namespace SharedRecipe.Application.BusinessRules.User.Register
             ValidateUser(userRequestJson);
 
             Domain.Entities.User user = _mapper.Map<Domain.Entities.User>(userRequestJson);
-            user.Password = "2313";
+            user.Password = _passwordEncryption.Encrypt(userRequestJson.Password);
 
             await _userWriteOnlyRepository.Insert(user);
 
