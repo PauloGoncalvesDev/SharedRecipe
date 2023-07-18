@@ -10,7 +10,7 @@ namespace SharedRecipe.Infrastructure.Migrations.Versions
 
         public override void Up()
         {
-            ICreateTableColumnOptionOrWithColumnSyntax tableColumn = BaseVersion.CreateTableColumn(Create.Table("User"));
+            ICreateTableColumnOptionOrWithColumnSyntax tableColumn = BaseVersion.CreateTableColumn(Create.Table("Users"));
 
             tableColumn
                 .WithColumn("Name").AsString(100).NotNullable()

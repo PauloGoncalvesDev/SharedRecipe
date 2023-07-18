@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace SharedRecipe.Domain.Entities
+﻿namespace SharedRecipe.Reporting.Requests
 {
-    public class User : BaseEntity
+    public class UserRequestJson
     {
         public string Name { get; set; }
 

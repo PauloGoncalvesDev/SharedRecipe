@@ -16,7 +16,7 @@ namespace SharedRecipe.Infrastructure.Migrations
 
             var registersSchema = mySqlConnection.Query("SELECT * FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = @schemaName", dynamicParameters);
 
-            if (!(registersSchema.Count() > 0))
+            if (!registersSchema.Any())
                 mySqlConnection.Execute($"CREATE DATABASE {schemaName}");
         }
     }

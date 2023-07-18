@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using SharedRecipe.Application.BusinessRules.User.Register;
+using SharedRecipe.Reporting.Responses;
 
 namespace SharedRecipe.Api.Controllers
 {
@@ -6,28 +8,18 @@ namespace SharedRecipe.Api.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
-
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IActionResult> Get([FromServices] IRegisterUser registerUser)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            UserResponseJson userResponseJson = await registerUser.Execute(new Reporting.Requests.UserRequestJson
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+                Email = "gui@gmail.com",
+                Name = "Paulin Guilherme",
+                Password = "123456788",
+                Phone = "88 9 9639-5192"
+            });
+
+            return Ok(userResponseJson);
         }
     }
 }
