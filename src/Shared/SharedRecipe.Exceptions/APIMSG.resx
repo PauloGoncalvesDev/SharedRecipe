@@ -141,4 +141,7 @@
   <data name="UNKNOW_ERROR" xml:space="preserve">
     <value>Unknow error.</value>
   </data>
+  <data name="USER_CREATED" xml:space="preserve">
+    <value>User created successfully.</value>
+  </data>
 </root>

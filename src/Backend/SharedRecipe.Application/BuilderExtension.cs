@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SharedRecipe.Application.BusinessRules.User.Register;
 using SharedRecipe.Application.Services.Cryptography;
+using SharedRecipe.Application.Services.Token;
 
 namespace SharedRecipe.Application
 {
@@ -10,6 +11,8 @@ namespace SharedRecipe.Application
         public static void AddApplication(this IServiceCollection serviceDescriptors, IConfiguration configuration)
         {
             AddApplicationServicePasswordEncryption(serviceDescriptors, configuration);
+
+            AddApplicationServiceTokenJwt(serviceDescriptors, configuration);
 
             AddApplicationUser(serviceDescriptors);
         }
@@ -24,6 +27,15 @@ namespace SharedRecipe.Application
             string internPassword = configuration.GetRequiredSection("Configuration:InternPassword").Value ?? string.Empty;
 
             serviceDescriptors.AddScoped(options => new PasswordEncryption(internPassword));
+        }
+
+        private static void AddApplicationServiceTokenJwt(IServiceCollection serviceDescriptors, IConfiguration configuration)
+        {
+            int expirationTime = Convert.ToInt32(configuration.GetRequiredSection("Configuration:JwtExpirationTime").Value);
+
+            string securityPassword = configuration.GetRequiredSection("Configuration:JwtSecurityPassword").Value;
+
+            serviceDescriptors.AddScoped(options => new TokenController(expirationTime, securityPassword));
         }
     }
 }

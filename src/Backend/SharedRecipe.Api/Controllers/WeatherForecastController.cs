@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SharedRecipe.Application.BusinessRules.User.Register;
+using SharedRecipe.Reporting.Responses;
 
 namespace SharedRecipe.Api.Controllers
 {
@@ -10,7 +11,7 @@ namespace SharedRecipe.Api.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public async Task<IActionResult> Get([FromServices] IRegisterUser registerUser)
         {
-            await registerUser.Execute(new Reporting.Requests.UserRequestJson
+            UserResponseJson userResponseJson = await registerUser.Execute(new Reporting.Requests.UserRequestJson
             {
                 Email = "gui@gmail.com",
                 Name = "Paulin Guilherme",
@@ -18,7 +19,7 @@ namespace SharedRecipe.Api.Controllers
                 Phone = "88 9 9639-5192"
             });
 
-            return Ok();
+            return Ok(userResponseJson);
         }
     }
 }

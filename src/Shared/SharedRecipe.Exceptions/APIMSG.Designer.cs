@@ -131,5 +131,14 @@ namespace SharedRecipe.Exceptions {
                 return ResourceManager.GetString("UNKNOW_ERROR", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User created successfully..
+        /// </summary>
+        public static string USER_CREATED {
+            get {
+                return ResourceManager.GetString("USER_CREATED", resourceCulture);
+            }
+        }
     }
 }
