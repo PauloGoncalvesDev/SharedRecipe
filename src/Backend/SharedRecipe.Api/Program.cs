@@ -4,6 +4,7 @@ using SharedRecipe.Application.Services.Automapper;
 using SharedRecipe.Domain.Extension;
 using SharedRecipe.Infrastructure;
 using SharedRecipe.Infrastructure.Migrations;
+using SharedRecipe.Infrastructure.RepositoryAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,12 +27,21 @@ var app = builder.Build();
 
 void ValidateDatabaseIntegrity()
 {
-    string connection = builder.Configuration.GetConnectionStrings();
-    string nameDatabase = builder.Configuration.GetNameDatabase();
+    using IServiceScope serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
 
-    Database.CreateDatabase(connection, nameDatabase);
+    using SharedRecipeContext sharedRecipeContext = serviceScope.ServiceProvider.GetService<SharedRecipeContext>();
 
-    app.MigrateDatabase();
+    bool? databaseInMemory = sharedRecipeContext?.Database?.ProviderName?.Equals("Microsoft.EntityFrameworkCore.InMemory");
+
+    if (!databaseInMemory.HasValue || !databaseInMemory.Value)
+    {
+        string connection = builder.Configuration.GetConnectionStrings();
+        string nameDatabase = builder.Configuration.GetNameDatabase();
+
+        Database.CreateDatabase(connection, nameDatabase);
+
+        app.MigrateDatabase();
+    }
 }
 
 // Configure the HTTP request pipeline.
@@ -50,3 +60,5 @@ app.MapControllers();
 ValidateDatabaseIntegrity();
 
 app.Run();
+
+public partial class Program { };
