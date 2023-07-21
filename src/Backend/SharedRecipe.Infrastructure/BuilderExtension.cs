@@ -25,11 +25,16 @@ namespace SharedRecipe.Infrastructure
 
         private static void AddContext(IServiceCollection serviceDescriptors, IConfiguration configuration)
         {
-            MySqlServerVersion serverVersion = new MySqlServerVersion(new Version(8, 0, 31));
+            bool.TryParse(configuration.GetSection("Configuration:DatabaseInMemory").Value, out bool databaseInMemory);
 
-            string connectionString = configuration.GetConnectionStringsAndNameDatabase();
+            if (!databaseInMemory)
+            {
+                MySqlServerVersion serverVersion = new MySqlServerVersion(new Version(8, 0, 31));
 
-            serviceDescriptors.AddDbContext<SharedRecipeContext>(dbContext => dbContext.UseMySql(connectionString, serverVersion));
+                string connectionString = configuration.GetConnectionStringsAndNameDatabase();
+
+                serviceDescriptors.AddDbContext<SharedRecipeContext>(dbContext => dbContext.UseMySql(connectionString, serverVersion));
+            }
         }
 
         private static void AddWorkUnit(IServiceCollection serviceDescriptors)
@@ -45,9 +50,14 @@ namespace SharedRecipe.Infrastructure
 
         private static void AddFluentMigrator(IServiceCollection serviceDescriptors, IConfiguration configuration)
         {
-            serviceDescriptors.AddFluentMigratorCore().ConfigureRunner(c =>
-            c.AddMySql5()
-            .WithGlobalConnectionString(configuration.GetConnectionStringsAndNameDatabase()).ScanIn(Assembly.Load("SharedRecipe.Infrastructure")).For.All());
+            bool.TryParse(configuration.GetSection("Configuration:DatabaseInMemory").Value, out bool databaseInMemory);
+
+            if (!databaseInMemory)
+            {
+                serviceDescriptors.AddFluentMigratorCore().ConfigureRunner(c =>
+                    c.AddMySql5()
+                    .WithGlobalConnectionString(configuration.GetConnectionStringsAndNameDatabase()).ScanIn(Assembly.Load("SharedRecipe.Infrastructure")).For.All());
+            }
         }
     }
 }
