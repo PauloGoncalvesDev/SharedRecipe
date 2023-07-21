@@ -22,5 +22,11 @@ namespace SharedRecipe.Infrastructure.RepositoryAccess.Repository
         {
             await _sharedRecipeContext.Users.AddAsync(user);
         }
+
+        public async Task<User> GetUserLogin(string email, string password)
+        {
+            return await _sharedRecipeContext.Users.AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Email.Equals(email) && u.Password.Equals(password));
+        }
     }
 }
