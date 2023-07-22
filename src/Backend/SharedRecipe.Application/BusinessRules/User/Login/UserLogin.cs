@@ -1,6 +1,7 @@
 ﻿using SharedRecipe.Application.Services.Cryptography;
 using SharedRecipe.Application.Services.Token;
 using SharedRecipe.Domain.Repositories;
+using SharedRecipe.Exceptions;
 using SharedRecipe.Exceptions.ExceptionsBase;
 using SharedRecipe.Reporting.Requests;
 using SharedRecipe.Reporting.Responses;
@@ -32,7 +33,7 @@ namespace SharedRecipe.Application.BusinessRules.User.Login
             return new UserLoginResponseJson
             {
                 Name = user.Name,
-                Message = "deu certo",
+                Message = APIMSG.LOGIN_COMPLETED,
                 Success = true,
                 Token = _tokenController.GenerateTokenJwt(user.Email)
             };

@@ -133,6 +133,15 @@ namespace SharedRecipe.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login successfully completed..
+        /// </summary>
+        public static string LOGIN_COMPLETED {
+            get {
+                return ResourceManager.GetString("LOGIN_COMPLETED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email or password is incorrect..
         /// </summary>
         public static string LOGIN_ERROR {
