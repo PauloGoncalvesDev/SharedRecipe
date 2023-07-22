@@ -10,7 +10,7 @@ namespace SharedRecipe.Exceptions.ExceptionsBase
     {
         public List<string> ErrorsMessage { get; set; }
 
-        public ValidationException(List<string> errorsMessage)
+        public ValidationException(List<string> errorsMessage) : base(string.Empty)
         {
             ErrorsMessage = errorsMessage;
         }
