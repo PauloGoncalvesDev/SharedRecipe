@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SharedRecipe.Application.BusinessRules.User.Login;
 using SharedRecipe.Application.BusinessRules.User.Register;
 using SharedRecipe.Application.Services.Cryptography;
 using SharedRecipe.Application.Services.Token;
@@ -19,7 +20,8 @@ namespace SharedRecipe.Application
 
         private static void AddApplicationUser(IServiceCollection serviceDescriptors)
         {
-            serviceDescriptors.AddScoped<IRegisterUser, RegisterUser>();
+            serviceDescriptors.AddScoped<IRegisterUser, RegisterUser>()
+                .AddScoped<IUserLogin, UserLogin>();
         }
 
         private static void AddApplicationServicePasswordEncryption(IServiceCollection serviceDescriptors, IConfiguration configuration)

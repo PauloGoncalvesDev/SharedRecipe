@@ -21,6 +21,8 @@ namespace SharedRecipe.Api.Filters
         {
             if (exceptionContext.Exception is ValidationException)
                 HandleValidationException(exceptionContext);
+            else if (exceptionContext.Exception is InvalidLoginException)
+                HandleInvalidLoginException(exceptionContext);
         }
 
         private void HandleValidationException(ExceptionContext exceptionContext)
@@ -35,6 +37,14 @@ namespace SharedRecipe.Api.Filters
         {
             exceptionContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             exceptionContext.Result = new ObjectResult(new ErrorBaseResponseJson(APIMSG.UNKNOW_ERROR, false));
+        }
+
+        private void HandleInvalidLoginException(ExceptionContext exceptionContext)
+        {
+            InvalidLoginException invalidLoginException = exceptionContext.Exception as InvalidLoginException;
+
+            exceptionContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            exceptionContext.Result = new ObjectResult(new ErrorBaseResponseJson(invalidLoginException.Message, false));
         }
     }
 }

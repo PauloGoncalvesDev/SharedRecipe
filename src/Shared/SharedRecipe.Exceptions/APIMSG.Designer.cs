@@ -133,6 +133,15 @@ namespace SharedRecipe.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email or password is incorrect..
+        /// </summary>
+        public static string LOGIN_ERROR {
+            get {
+                return ResourceManager.GetString("LOGIN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknow error..
         /// </summary>
         public static string UNKNOW_ERROR {
