@@ -8,6 +8,10 @@ namespace WebApi.Test
 {
     public class SharedRecipeWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
+        private SharedRecipe.Domain.Entities.User _user;
+
+        private string _password;
+
         protected override void ConfigureWebHost(IWebHostBuilder webHostBuilder)
         {
             webHostBuilder.UseEnvironment("Test")
@@ -30,7 +34,19 @@ namespace WebApi.Test
                     SharedRecipeContext sharedRecipeContext = scopeServiceProvider.ServiceProvider.GetRequiredService<SharedRecipeContext>();
 
                     sharedRecipeContext.Database.EnsureDeleted();
+
+                    (_user, _password) = ContextSeedInMemory.Seed(sharedRecipeContext);
                 });
+        }
+
+        public SharedRecipe.Domain.Entities.User GetSeedUser()
+        {
+            return _user;
+        }
+
+        public string GetSeedPassword()
+        {
+            return _password;
         }
     }
 }
