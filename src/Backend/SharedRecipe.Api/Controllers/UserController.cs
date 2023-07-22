@@ -5,9 +5,7 @@ using SharedRecipe.Reporting.Responses;
 
 namespace SharedRecipe.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class UserController : ControllerBase
+    public class UserController : SharedRecipeControllerBase
     {
         [HttpPost]
         [ProducesResponseType(typeof(UserResponseJson), StatusCodes.Status201Created)]
