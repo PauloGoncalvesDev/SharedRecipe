@@ -21,5 +21,10 @@ namespace WebApi.Test.V1
         {
             return await _httpClient.PostAsync(methodName, new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"));
         }
+
+        protected async Task<HttpResponseMessage> PostRequest(string methodName, UserLoginRequestJson userLoginRequestJson)
+        {
+            return await _httpClient.PostAsync(methodName, new StringContent(JsonConvert.SerializeObject(userLoginRequestJson), Encoding.UTF8, "application/json"));
+        }
     }
 }

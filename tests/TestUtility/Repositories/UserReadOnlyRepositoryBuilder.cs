@@ -1,4 +1,5 @@
 ﻿using Moq;
+using SharedRecipe.Domain.Entities;
 using SharedRecipe.Domain.Repositories;
 
 namespace TestUtility.Repositories
@@ -25,6 +26,13 @@ namespace TestUtility.Repositories
         {
             if(!string.IsNullOrEmpty(email))
                 _userReadOnlyRepository.Setup(i => i.GetExistingEmail(email)).ReturnsAsync(true);
+
+            return this;
+        }
+
+        public UserReadOnlyRepositoryBuilder GetUserLogin(User user)
+        {
+            _userReadOnlyRepository.Setup(i => i.GetUserLogin(user.Email, user.Password)).ReturnsAsync(user);
 
             return this;
         }
