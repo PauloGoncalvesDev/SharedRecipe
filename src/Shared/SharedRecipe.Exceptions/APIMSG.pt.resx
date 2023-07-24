@@ -138,6 +138,9 @@
   <data name="INVALID_EMAIL" xml:space="preserve">
     <value>O campo 'Email' é inválido.</value>
   </data>
+  <data name="INVALID_PASSWORD" xml:space="preserve">
+    <value>Senha informada é inválida.</value>
+  </data>
   <data name="LENGTH_PASSWORD" xml:space="preserve">
     <value>O campo 'Password' deve ter no mínimo 6 caracteres.</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="LOGIN_ERROR" xml:space="preserve">
     <value>Email ou senha estão incorretos.</value>
+  </data>
+  <data name="PASSWORD_CHANGED" xml:space="preserve">
+    <value>Senha alterada com sucesso.</value>
   </data>
   <data name="UNKNOW_ERROR" xml:space="preserve">
     <value>Erro desconhecido.</value>
