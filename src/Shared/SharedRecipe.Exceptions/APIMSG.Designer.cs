@@ -169,6 +169,15 @@ namespace SharedRecipe.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Token is expired..
+        /// </summary>
+        public static string TOKEN_EXPIRED {
+            get {
+                return ResourceManager.GetString("TOKEN_EXPIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknow error..
         /// </summary>
         public static string UNKNOW_ERROR {
@@ -183,6 +192,15 @@ namespace SharedRecipe.Exceptions {
         public static string USER_CREATED {
             get {
                 return ResourceManager.GetString("USER_CREATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User is not authorized to access the method..
+        /// </summary>
+        public static string USER_UNAUTHORIZED {
+            get {
+                return ResourceManager.GetString("USER_UNAUTHORIZED", resourceCulture);
             }
         }
     }

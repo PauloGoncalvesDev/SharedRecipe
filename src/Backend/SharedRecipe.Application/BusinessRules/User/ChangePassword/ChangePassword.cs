@@ -2,6 +2,7 @@
 using SharedRecipe.Application.Services.Cryptography;
 using SharedRecipe.Application.Services.LoggedUser;
 using SharedRecipe.Application.Validators.User;
+using SharedRecipe.Domain.Repositories;
 using SharedRecipe.Domain.Repositories.User;
 using SharedRecipe.Exceptions;
 using SharedRecipe.Exceptions.ExceptionsBase;
@@ -18,11 +19,15 @@ namespace SharedRecipe.Application.BusinessRules.User.ChangePassword
 
         private readonly PasswordEncryption _passwordEncryption;
 
-        public ChangePassword(IUserUpdateOnlyRepository userUpdateOnlyRepository, ILoggedUser loggedUser, PasswordEncryption passwordEncryption)
+        private readonly IWorkUnit _workUnit;
+
+        public ChangePassword(IUserUpdateOnlyRepository userUpdateOnlyRepository, ILoggedUser loggedUser, PasswordEncryption passwordEncryption, IWorkUnit workUnit)
         {
             _userUpdateOnlyRepository = userUpdateOnlyRepository;
             _loggedUser = loggedUser;   
             _passwordEncryption = passwordEncryption;
+            _workUnit = workUnit;
+
         }
 
         public async Task<ChangePasswordResponseJson> Execute(ChangePasswordRequestJson changePasswordRequestJson)
@@ -36,6 +41,8 @@ namespace SharedRecipe.Application.BusinessRules.User.ChangePassword
             user.Password = _passwordEncryption.Encrypt(changePasswordRequestJson.NewPassword);
 
             _userUpdateOnlyRepository.ChangePassword(user);
+
+            await _workUnit.Commit();
 
             return new ChangePasswordResponseJson
             {
