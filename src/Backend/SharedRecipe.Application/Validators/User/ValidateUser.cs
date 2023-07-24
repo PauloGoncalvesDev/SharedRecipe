@@ -50,11 +50,7 @@ namespace SharedRecipe.Application.Validators.User
 
         private void ValidatePassword()
         {
-            RuleFor(r => r.Password).NotEmpty().WithMessage(string.Format(APIMSG.EMPTY_PASSWORD));
-            When(r => !string.IsNullOrEmpty(r.Password), () =>
-            {
-                RuleFor(r => r.Password.Length).GreaterThanOrEqualTo(6).WithMessage(APIMSG.LENGTH_PASSWORD);
-            });
+            RuleFor(r => r.Password).SetValidator(new ValidatePasswordDefault());
         }
     }
 }

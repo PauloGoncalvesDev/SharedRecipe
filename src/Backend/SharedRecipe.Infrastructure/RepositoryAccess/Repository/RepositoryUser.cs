@@ -33,5 +33,16 @@ namespace SharedRecipe.Infrastructure.RepositoryAccess.Repository
         {
             _sharedRecipeContext.Users.Update(user);
         }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await _sharedRecipeContext.Users.AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Email.Equals(email));
+        }
+
+        public async Task<User> GetUserById(long id)
+        {
+            return await _sharedRecipeContext.Users.FirstOrDefaultAsync(u => u.Id == (id));
+        }
     }
 }

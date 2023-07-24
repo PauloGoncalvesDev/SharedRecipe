@@ -39,7 +39,7 @@ namespace SharedRecipe.Application.Services.Token
             return jwtSecurityTokenHandler.WriteToken(securityToken);
         }
 
-        public void ValidateTokenJwt(string tokenJwt)
+        public ClaimsPrincipal ValidateTokenJwt(string tokenJwt)
         {
             JwtSecurityTokenHandler jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
 
@@ -52,7 +52,16 @@ namespace SharedRecipe.Application.Services.Token
                 ValidateAudience = false
             };
 
-            jwtSecurityTokenHandler.ValidateToken(tokenJwt, validationParameters, out _);
+            ClaimsPrincipal claimsPrincipal = jwtSecurityTokenHandler.ValidateToken(tokenJwt, validationParameters, out _);
+
+            return claimsPrincipal;
+        }
+
+        public string GetEmailFromTokenJwt(string tokenJwt)
+        {
+            ClaimsPrincipal claimsPrincipal = ValidateTokenJwt(tokenJwt);
+
+            return claimsPrincipal.FindFirst(_emailAlias).Value;
         }
 
         private SymmetricSecurityKey SymmetricKey()

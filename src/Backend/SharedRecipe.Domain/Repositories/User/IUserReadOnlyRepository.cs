@@ -7,5 +7,7 @@ namespace SharedRecipe.Domain.Repositories.User
         Task<bool> GetExistingEmail(string email);
 
         Task<Entities.User> GetUserLogin(string email, string password);
+
+        Task<Entities.User> GetUserByEmail(string email);
     }
 }

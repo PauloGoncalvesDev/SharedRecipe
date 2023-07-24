@@ -124,6 +124,15 @@ namespace SharedRecipe.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password is invalid..
+        /// </summary>
+        public static string INVALID_PASSWORD {
+            get {
+                return ResourceManager.GetString("INVALID_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The field &apos;Password&apos; must be at least 6 characters long..
         /// </summary>
         public static string LENGTH_PASSWORD {
@@ -147,6 +156,15 @@ namespace SharedRecipe.Exceptions {
         public static string LOGIN_ERROR {
             get {
                 return ResourceManager.GetString("LOGIN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password successfully changed..
+        /// </summary>
+        public static string PASSWORD_CHANGED {
+            get {
+                return ResourceManager.GetString("PASSWORD_CHANGED", resourceCulture);
             }
         }
         
