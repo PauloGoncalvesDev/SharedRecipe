@@ -1,11 +1,11 @@
 ﻿using SharedRecipe.Domain.Entities;
 
-namespace SharedRecipe.Domain.Repositories
+namespace SharedRecipe.Domain.Repositories.User
 {
     public interface IUserReadOnlyRepository
     {
         Task<bool> GetExistingEmail(string email);
 
-        Task<User> GetUserLogin(string email, string password);
+        Task<Entities.User> GetUserLogin(string email, string password);
     }
 }

@@ -4,6 +4,7 @@ using SharedRecipe.Application.BusinessRules.User.Register;
 using SharedRecipe.Application.Services.Cryptography;
 using SharedRecipe.Application.Services.Token;
 using SharedRecipe.Domain.Repositories;
+using SharedRecipe.Domain.Repositories.User;
 using SharedRecipe.Exceptions;
 using SharedRecipe.Exceptions.ExceptionsBase;
 using SharedRecipe.Reporting.Requests;

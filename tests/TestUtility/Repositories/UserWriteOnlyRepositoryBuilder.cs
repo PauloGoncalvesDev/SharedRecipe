@@ -1,5 +1,5 @@
 ﻿using Moq;
-using SharedRecipe.Domain.Repositories;
+using SharedRecipe.Domain.Repositories.User;
 
 namespace TestUtility.Repositories
 {
