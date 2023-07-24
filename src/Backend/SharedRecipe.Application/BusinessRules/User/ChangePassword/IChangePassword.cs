@@ -5,6 +5,6 @@ namespace SharedRecipe.Application.BusinessRules.User.ChangePassword
 {
     public interface IChangePassword
     {
-        Task<ChangePasswordResponseJson> Execute(ChangePasswordRequestJson changePasswordRequestJson);
+        public Task<ChangePasswordResponseJson> Execute(ChangePasswordRequestJson changePasswordRequestJson);
     }
 }

@@ -23,6 +23,8 @@ builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
     cfg.AddProfile(new AutomapperConfig());
 }).CreateMapper());
 
+builder.Services.AddScoped<UserAuthorization>();
+
 var app = builder.Build();
 
 void ValidateDatabaseIntegrity()
