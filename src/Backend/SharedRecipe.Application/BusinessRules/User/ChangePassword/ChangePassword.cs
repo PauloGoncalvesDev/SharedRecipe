@@ -39,6 +39,7 @@ namespace SharedRecipe.Application.BusinessRules.User.ChangePassword
             ValidateChangePassword(changePasswordRequestJson, user);
 
             user.Password = _passwordEncryption.Encrypt(changePasswordRequestJson.NewPassword);
+            user.UpdateDate = DateTime.Now;
 
             _userUpdateOnlyRepository.ChangePassword(user);
 
